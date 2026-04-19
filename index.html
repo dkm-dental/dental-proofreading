@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proofreading Checklist — Dental Websites</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a1a; padding: 20px; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #111; }
+  .subtitle { font-size: 13px; color: #666; margin-bottom: 28px; }
+  .site-block { background: #fff; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow: hidden; }
+  .site-header { padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; }
+  .site-name { font-size: 16px; font-weight: 700; }
+  .badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
+  .badge-red { background: #fee2e2; color: #dc2626; }
+  .badge-yellow { background: #fef3c7; color: #d97706; }
+  .badge-green { background: #d1fae5; color: #059669; }
+  .progress-bar { flex: 1; height: 6px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .progress-text { font-size: 12px; color: #888; min-width: 45px; text-align: right; }
+  .page-group { border-bottom: 1px solid #f0f0f0; }
+  .page-group:last-child { border-bottom: none; }
+  .page-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 20px 6px; background: #fafafa; }
+  .item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 20px; border-bottom: 1px solid #f5f5f5; cursor: pointer; transition: background 0.15s; }
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: #f9f9f9; }
+  .item.done { opacity: 0.45; }
+  .item.done .found { text-decoration: line-through; }
+  input[type="checkbox"] { width: 17px; height: 17px; margin-top: 2px; accent-color: #16a34a; cursor: pointer; flex-shrink: 0; }
+  .type-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 3px; }
+  .type-spelling { background: #fee2e2; color: #b91c1c; }
+  .type-grammar { background: #dbeafe; color: #1d4ed8; }
+  .type-phrasing { background: #f3e8ff; color: #7c3aed; }
+  .found { font-size: 13px; font-weight: 500; color: #222; font-family: 'Courier New', monospace; background: #fff7ed; padding: 2px 6px; border-radius: 4px; border-left: 3px solid #f97316; margin-bottom: 4px; }
+  .suggestion { font-size: 12px; color: #555; line-height: 1.5; }
+  .suggestion strong { color: #16a34a; }
+  .arrow { color: #16a34a; font-weight: 700; }
+  .summary-bar { display: flex; gap: 16px; padding: 12px 20px; background: #f8f8f8; border-top: 1px solid #eee; font-size: 12px; color: #666; }
+  .summary-bar span { display: flex; align-items: center; gap: 4px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-red { background: #ef4444; }
+  .dot-blue { background: #3b82f6; }
+  .dot-purple { background: #a855f7; }
+  .total-counter { font-size: 13px; font-weight: 600; color: #333; }
+  .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .reset-btn { font-size: 12px; color: #888; background: none; border: 1px solid #ddd; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+  .reset-btn:hover { background: #f5f5f5; }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <div>
+    <h1>Proofreading Checklist</h1>
+    <div class="subtitle">English errors found across 2 dental websites — <span id="global-counter">0</span> of <span id="global-total">0</span> fixed</div>
+  </div>
+  <a href="dentaldesignpattaya/" style="font-size:12px;color:#3b82f6;text-decoration:none;border:1px solid #bfdbfe;border-radius:6px;padding:6px 12px;margin-right:8px;">dentaldesignpattaya.com →</a><button class="reset-btn" onclick="resetAll()">Reset All</button>
+</div>
+
+<!-- ==============================
+     SITE 1: digitaldentalpattaya.com
+     ============================== -->
+<div class="site-block" id="site-1">
+  <div class="site-header">
+    <div>
+      <div class="site-name">digitaldentalpattaya.com</div>
+      <div style="font-size:12px;color:#888;margin-top:2px;">7 pages checked</div>
+    </div>
+    <span class="badge badge-red" id="badge-1">27 errors</span>
+    <div class="progress-bar"><div class="progress-fill" id="prog-1" style="width:0%;background:#ef4444;"></div></div>
+    <div class="progress-text" id="ptext-1">0 / 27</div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Homepage (/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"a Best dental clinic and Dentist"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"the best dental clinic and dentist"</strong> (ตัวพิมพ์เล็กและ article ผิด)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"...in Pattaya.To consult"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"...in Pattaya. To consult"</strong> (ขาด space หลัง .)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"Advanced dental technology used in your clinic"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Advanced dental technology used in our clinic"</strong> ("your" → "our")</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">About Us (/about-us/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"British Academy of Restorative Dentistry,The team"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"...Dentistry. The team"</strong> (ต้องเป็น period ไม่ใช่ comma + ขาด space)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"ask us if we can kiss when using Invisalign"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"ask us if you can kiss when using Invisalign"</strong> ("we" → "you")</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-phrasing">Phrasing</span>
+      <div>
+        <div class="found">ย่อหน้า "ask us if we can kiss... Our goal for all patients"</div>
+        <div class="suggestion"><span class="arrow">→</span> ควรเขียนใหม่ทั้งย่อหน้า — แปลมาจากไทยตรงๆ อ่านแล้วสับสน</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Services (/services/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"Dentist in Bang Lamung Chonburi are"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Dentists in Bang Lamung, Chonburi are"</strong> (plural + comma)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Our Dentists (/our-dentists/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"Practice: – Years" (ว่างเปล่า)</div>
+        <div class="suggestion"><span class="arrow">→</span> ใส่จำนวนปีจริง หรือลบออก (Dr. Nat P. และ Dr. Fuse ทั้ง 2 คน)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"a Graduated with first-class honors"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Graduated with first-class honors"</strong> (ลบ "a" ออก)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"Post Graduate Certificate"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Postgraduate Certificate"</strong> (คำเดียว)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Fees & Offers (/fees-offer/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"note:1.Promotion Exclusions:"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Note: 1. Promotion Exclusions:"</strong> (ตัวพิมพ์ใหญ่ + space)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"via EMAIL to avail this offer"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"via email to avail yourself of this offer"</strong></div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"depending on the exchange rate in Date of your transaction"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"depending on the exchange rate on the date of your transaction"</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Dental Implants Pattaya (/dental-implants-pattaya/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"Zicronia Implants"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Zirconia Implants"</strong> (สะกดผิด — สำคัญมาก)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"All-on 6 Dental Implants"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"All-on-6 Dental Implants"</strong> (ขาด hyphen)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"Dr.Narumon Sophaladawan | ...Specialistophaladawan"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Dr. Naruemon Sopaladawan | Cosmetic Dentistry & Implant Specialist"</strong> (ชื่อสะกดผิด + มีข้อความซ้ำเกิน)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"Dr.Kasidit" / "Dr.Narumon" (ไม่มี space)</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Dr. Kasidit" / "Dr. Naruemon"</strong> (เพิ่ม space หลัง Dr.)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"consider experience, technology... consider these key factors:"</div>
+        <div class="suggestion"><span class="arrow">→</span> ประโยคซ้ำคำว่า "consider" — เขียนใหม่ให้เป็นประโยคเดียว</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Dental Implants Thailand (/dental-implants-thailand/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"the same, if not better, quality of care than"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"the same quality of care as, if not better than,"</strong> (โครงสร้างประโยคผิด — ใช้ 2 ครั้งในหน้านี้)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"1.Cost Savings" / "2.Quality" (ไม่มี space)</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"1. Cost Savings" / "2. Quality"</strong> (เพิ่ม space ทุกหัวข้อ)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"over 20+ years"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"over 20 years"</strong> หรือ <strong>"20+ years"</strong> (ใช้ทั้ง over และ + ซ้ำซ้อน)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-bar">
+    <span><span class="dot dot-red"></span> Spelling: 5</span>
+    <span><span class="dot dot-blue"></span> Grammar: 17</span>
+    <span><span class="dot dot-purple"></span> Phrasing: 5</span>
+  </div>
+</div>
+
+
+<!-- ==============================
+     SITE 2: dentalveneerstudio.com
+     ============================== -->
+<div class="site-block" id="site-2">
+  <div class="site-header">
+    <div>
+      <div class="site-name">dentalveneerstudio.com</div>
+      <div style="font-size:12px;color:#888;margin-top:2px;">5 pages checked (1 หน้า 404)</div>
+    </div>
+    <span class="badge badge-yellow" id="badge-2">17 errors</span>
+    <div class="progress-bar"><div class="progress-fill" id="prog-2" style="width:0%;background:#f59e0b;"></div></div>
+    <div class="progress-text" id="ptext-2">0 / 17</div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Homepage (/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"VeneersHollywood SmileDental CrownsOrther Treatments"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Other Treatments"</strong> (สะกดผิด "Orther" — ชัดเจนมาก)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"expert cosmetic dentist"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Expert cosmetic dentists"</strong> (plural)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Dental Veneers / Pricing</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"...for international patients.Our dedicated studio"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"...patients. Our dedicated studio"</strong> (ขาด space หลัง .)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"...that last for years.From fixing chips"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"...that last for years. From fixing chips"</strong> (ขาด space หลัง .)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Dental Tourism (/dental-tourism/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"discolouration"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"discoloration"</strong> (British spelling → American)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-phrasing">Phrasing</span>
+      <div>
+        <div class="found">"allowing you to regain your confidence while enjoying a luxury holiday"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"...while enjoying a luxurious holiday"</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Composite Veneers (/veneers/composite-veneers/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-phrasing">Phrasing</span>
+      <div>
+        <div class="found">"Decently natural, but luster and translucency are inferior"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Reasonably natural"</strong> ("Decently" ฟังดูไม่เป็นทางการ)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-phrasing">Phrasing</span>
+      <div>
+        <div class="found">"repaired directly and locally in the clinic"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"repaired directly at the clinic"</strong></div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"1–2 hours per session or no more than one full day"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"...per session, or no more than one full day"</strong> (ต้องมี comma)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-phrasing">Phrasing</span>
+      <div>
+        <div class="found">"accessible to more clients"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"accessible to more patients"</strong> (dental = patients ไม่ใช่ clients)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-group">
+    <div class="page-label">Treatment Planning (/dental-tourism/treatment-planning/)</div>
+
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-spelling">Spelling</span>
+      <div>
+        <div class="found">"colour"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"color"</strong> (British → American spelling)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"Week 1-2 (At Home)" / "Week 2-3 (At Home)"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Weeks 1–2"</strong> / <strong>"Weeks 2–3"</strong> (plural + en-dash)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"this helps us expedite" (ขึ้นต้นตัวพิมพ์เล็ก)</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"This helps us expedite"</strong></div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"DON'T consume alcohol 24 hours before"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"DON'T consume alcohol for 24 hours before"</strong></div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-grammar">Grammar</span>
+      <div>
+        <div class="found">"for the first 24-48 hours"</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"for the first 24–48 hours"</strong> (en-dash)</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <input type="checkbox"><span class="type-tag type-phrasing">Phrasing</span>
+      <div>
+        <div class="found">"Your comfort during recovery is paramount."</div>
+        <div class="suggestion"><span class="arrow">→</span> <strong>"Your comfort during recovery is our top priority."</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-bar">
+    <span><span class="dot dot-red"></span> Spelling: 3</span>
+    <span><span class="dot dot-blue"></span> Grammar: 8</span>
+    <span><span class="dot dot-purple"></span> Phrasing: 6</span>
+  </div>
+</div>
+
+
+<script>
+const TOTALS = { 'site-1': 27, 'site-2': 17 };
+const COLORS = { 'site-1': '#ef4444', 'site-2': '#f59e0b' };
+
+function toggle(el) {
+  const cb = el.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  el.classList.toggle('done', cb.checked);
+  updateProgress();
+}
+
+function updateProgress() {
+  let globalDone = 0, globalTotal = 0;
+  ['site-1','site-2'].forEach(id => {
+    const block = document.getElementById(id);
+    const items = block.querySelectorAll('.item');
+    const done = block.querySelectorAll('.item.done').length;
+    const total = TOTALS[id];
+    globalDone += done;
+    globalTotal += total;
+
+    const pct = total > 0 ? (done / total * 100) : 0;
+    document.getElementById('prog-' + id.split('-')[1]).style.width = pct + '%';
+    document.getElementById('prog-' + id.split('-')[1]).style.background = pct === 100 ? '#16a34a' : COLORS[id];
+    document.getElementById('ptext-' + id.split('-')[1]).textContent = done + ' / ' + total;
+
+    const badge = document.getElementById('badge-' + id.split('-')[1]);
+    if (pct === 100) { badge.className = 'badge badge-green'; badge.textContent = 'Done ✓'; }
+    else { badge.textContent = (total - done) + ' errors'; }
+  });
+  document.getElementById('global-counter').textContent = globalDone;
+  document.getElementById('global-total').textContent = globalTotal;
+}
+
+function resetAll() {
+  document.querySelectorAll('.item').forEach(el => {
+    el.classList.remove('done');
+    el.querySelector('input').checked = false;
+  });
+  updateProgress();
+}
+
+// Init
+updateProgress();
+</script>
+</body>
+</html>
